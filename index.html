@@ -2,103 +2,25 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="./public/astar-icon.png" />
+    <link rel="icon" href="./public/Blackburnian.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="A Pathfinding Visualizer"
+      content="Thomas Cantwell's Portfolio Site"
     />
     <link rel="stylesheet" href="style.css">
     <script defer src="index.js"></script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div class="generator-container">
-        <canvas class="map" width="1024px" height="640px"></canvas>
-        <div class="sidebar">
-            <a href="https://github.com/Tororoi/astar-pathfinding-js">Github Repo</a>
-            <div class="buttons">
-                <button class="clear-btn">Clear Grid</button>
-                <button class="naive-maze-btn">Generate Naive Maze</button>
-                <button class="eller-maze-btn">Generate Eller Maze</button>
-            </div>
-            <div class="color-select">
-                <div class="color">
-                    <div class="swatch" id="transparent"></div>
-                    <p>Eraser</p>
-                </div>
-                <div class="color">
-                    <div class="swatch" id="orange"></div>
-                    <p>Start</p>
-                </div>
-                <div class="color">
-                    <div class="swatch" id="blue"></div>
-                    <p>End</p>
-                </div>
-                <div class="color">
-                    <div class="swatch" id="black"></div>
-                    <p>Wall</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="output">
-        <!-- Add current g, h, f -->
-        <button class="generate-btn">Find Path</button>
-        <button class="cancel-btn">Cancel Path</button>
-        <p>Steps: </p>
-        <p class="steps">0</p>
-        <p>Path Length (tiles): </p>
-        <p class="path">0</p>
-        <p>g(n): </p>
-        <p class="gCost">0</p>
-        <p>h(n): </p>
-        <p class="hCost">0</p>
-        <p>f(n): </p>
-        <p class="fCost">0</p>
-    </div>
-    <div class="settings">
-        <div class="parameters">
-            <input type="checkbox" id="cornerBuffer" name="cornerBuffer" class="checkbox" value="bufferCorners">
-            <label for="cornerBuffer"> Buffer Corners</label><br>
-            <input type="checkbox" id="nodeRedundancy" name="nodeRedundancy" class="checkbox" value="nodeRedundancy">
-            <label for="nodeRedundancy"> Map Nodes</label><br>
-            <p>Step Delay (ms):</p> 
-            <p class="delay">50</p>
-            <input type="range" min="1" max="3000" value="50" class="slider" id="stepDelay">
-            <p>Tile Size (px):</p> 
-            <p class="tileSize">16</p>
-            <input type="range" min="3" max="6" value="4" class="slider" id="tileSlider">
-            <p>Precision:</p> 
-            <p class="precision">1000</p>
-            <input type="range" min="0" max="10" value="3" class="slider" id="precSlider">
-        </div>
-        <div class="cost-calc" id="heuristic">
-            <p class="category">Heuristic Distance</p>
-            <input type="radio" id="manhattan" name="heuristic" class="radio" value="manhattan">
-            <label for="manhattan">Manhattan</label><br>
-            <input type="radio" id="octile" name="heuristic" class="radio" value="octile" checked="checked">
-            <label for="octile">Octile</label><br>
-            <input type="radio" id="euclidean" name="heuristic" class="radio" value="euclidean">
-            <label for="euclidean">Euclidean</label>
-        </div>
-        <div class="cost-calc" id="fCost">
-            <p class="category">fCost Method</p>
-            <input type="radio" id="sum" name="fCost" class="radio" value="sum" checked="checked">
-            <label for="sum">g(n) + h(n)</label><br>
-            <input type="radio" id="ignoreG" name="fCost" class="radio" value="ignoreG">
-            <label for="ignoreG">Ignore g(n)</label><br>
-        </div>
-        <div class="cost-calc" id="tieBreak">
-            <p class="category">Tie Breaker</p>
-            <input type="radio" id="cross" name="tiebreak" class="radio" value="cross" checked="checked">
-            <label for="cross">Cross Product</label><br>
-            <input type="radio" id="proximity" name="tiebreak" class="radio" value="proximity">
-            <label for="proximity">Proximity</label><br>
-            <input type="radio" id="hCost" name="tiebreak" class="radio" value="hCost">
-            <label for="hCost">h(n)</label><br>
-            <input type="radio" id="noBreak" name="tiebreak" class="radio" value="noBreak">
-            <label for="noBreak">None</label><br>
+    <div id="root">
+        <div class="navbar">
+            <ul class="nav">
+                <li>Main</li>
+                <li>Projects</li>
+                <li>Resume</li>
+                <li>Blog</li>
+            </ul>
         </div>
     </div>
   </body>
