@@ -1,8 +1,8 @@
 //---------Canvas as Background-----------//
 
-// let bg = document.createElement('canvas'), 
 let bg = document.querySelector(".bg"),       
     bgCtx = bg.getContext('2d'),
+    //sharpen * 4
     bgw = bg.width = window.innerWidth*4,
     bgh = bg.height = window.innerHeight*4;
     bg.style.width = window.innerWidth + "px";
@@ -11,50 +11,41 @@ let bg = document.querySelector(".bg"),
 // bgCtx.imageSmoothingEnabled = false;
 // bgCtx.drawImage(offScreenCVS,0,0, 1000, 1000)
 //draw bg
-bgCtx.fillStyle = "#282c34"
-bgCtx.fillRect(0,0,bgw,bgh)
-let xCoord = bgw*0.5;
-let yCoord = bgh*-0.7;
+// bgCtx.fillStyle = "#282c34"
+// bgCtx.fillRect(0,0,bgw,bgh)
+// let xCoord = bgw*0.5;
+// let yCoord = bgh*-0.7;
 let cellSize = 100;
-let perspective = 0.7;
-for (let y=0; y<grid.length; y++) {
-    if (y>0) {
-        xCoord -= (grid.length * cellSize) + cellSize;
-        yCoord -= (grid.length * cellSize*perspective) - cellSize*perspective;
+// let perspective = 0.7;
+drawMaze();
+function drawMaze() {
+    let xCoord = bgw*0.5;
+    let yCoord = bgh*-0.7;
+    let perspective = 0.7;
+    for (let y=0; y<grid.length; y++) {
+        if (y>0) {
+            xCoord -= (grid.length * cellSize) + cellSize;
+            yCoord -= (grid.length * cellSize*perspective) - cellSize*perspective;
+        }
+        for (let x=0; x<grid[y].length; x++) {
+            yCoord += cellSize*perspective;
+            xCoord += cellSize; 
+            if (grid[y][x].color === "transparent") {continue;}
+            // draw the cube
+            drawCube(
+                xCoord,
+                yCoord,
+                cellSize,
+                cellSize,
+                cellSize,
+                grid[y][x].color,
+                perspective
+            );
+        }
     }
-    for (let x=0; x<grid[y].length; x++) {
-        yCoord += cellSize*perspective;
-        xCoord += cellSize; 
-        if (grid[y][x].color === "transparent") {continue;}
-        // draw the cube
-        drawCube(
-            xCoord,
-            yCoord,
-            cellSize,
-            cellSize,
-            cellSize,
-            grid[y][x].color,
-            perspective
-        );
-    }
+    // document.body.style.background = 'url(' + bg.toDataURL() + ')';
 }
-        // // draw the cube
-        // drawCube(
-        //     200,
-        //     250,
-        //     100,
-        //     100,
-        //     100,
-        //     "#ff8d4b"
-        // );
-        // drawCube(
-        //     300,
-        //     300,
-        //     100,
-        //     100,
-        //     100,
-        //     "#ff8d4b"
-        // );
+
 function shadeColor(color, percent) {
     color = color.substr(1);
     var num = parseInt(color, 16),
@@ -103,4 +94,40 @@ function drawCube(x, y, wx, wy, h, color, per) {
     bgCtx.fill();
 }
 
-document.body.style.background = 'url(' + bg.toDataURL() + ')';
+//Canvas Events
+bg.addEventListener("click", handleCanvasClick);
+
+function handleCanvasClick(e) {
+    console.log(e.offsetX, e.offsetY)
+    let x = Math.round(e.offsetX/(cellSize/4))
+    let y = Math.round(e.offsetY/(cellSize/4))
+    console.log(x,y);
+    grid[y][x].color = "#b94f4f";
+    bgCtx.clearRect(0,0,bgw,bgh);
+    drawMaze();
+}
+
+//Animation
+// let bgImage = new Image;
+// bgImage.src = bg.toDataURL();
+// function drawLoop() {
+//     bgCtx.clearRect(0,0,bgw,bgh);
+    
+//     bgCtx.fillStyle = "#b94f4f";
+//     bgCtx.fillRect(50,50,1000,1000);
+
+//     drawMaze();
+//     // drawCube(
+//     //     1100,
+//     //     1100,
+//     //     cellSize,
+//     //     cellSize,
+//     //     cellSize,
+//     //     "#b94f4f",
+//     //     perspective
+//     // );
+
+//     window.requestAnimationFrame(drawLoop);
+// }
+
+// window.requestAnimationFrame(drawLoop);
