@@ -4,8 +4,8 @@ let offScreenCVS = document.createElement('canvas');
 let offScreenCTX = offScreenCVS.getContext("2d");
 
 //Set the dimensions of the drawing canvas
-offScreenCVS.width = 16;
-offScreenCVS.height = 16;
+offScreenCVS.width = 64;
+offScreenCVS.height = 64;
 
 let grid = [];
 

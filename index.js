@@ -2,25 +2,53 @@
 
 let bg = document.createElement('canvas'),        
     bgCtx = bg.getContext('2d'),
-    bgw = bg.width = 1000,
-    bgh = bg.height = 1000;
+    bgw = bg.width = window.innerWidth,
+    bgh = bg.height = window.innerHeight;
 
 // bgCtx.imageSmoothingEnabled = false;
 // bgCtx.drawImage(offScreenCVS,0,0, 1000, 1000)
+//draw bg
+bgCtx.fillStyle = "#282c34"
+bgCtx.fillRect(0,0,bgw,bgh)
+let xCoord = bgw*2.6;
+let yCoord = bgh*2;
+let cellSize = 50;
 for (let y=0; y<grid.length; y++) {
+    xCoord -= (grid.length * cellSize) + cellSize;
+    yCoord -= (grid.length * cellSize/2) - cellSize/2;
     for (let x=0; x<grid[y].length; x++) {
+        yCoord += cellSize/2;
+        xCoord += cellSize; 
         if (grid[y][x].color === "transparent") {continue;}
         // draw the cube
         drawCube(
-            x*10,
-            y*10,
-            10,
-            10,
-            10,
+            xCoord,
+            yCoord,
+            cellSize,
+            cellSize,
+            cellSize,
             grid[y][x].color
         );
     }
 }
+
+        // // draw the cube
+        // drawCube(
+        //     200,
+        //     250,
+        //     100,
+        //     100,
+        //     100,
+        //     "#ff8d4b"
+        // );
+        // drawCube(
+        //     300,
+        //     300,
+        //     100,
+        //     100,
+        //     100,
+        //     "#ff8d4b"
+        // );
 function shadeColor(color, percent) {
     color = color.substr(1);
     var num = parseInt(color, 16),
