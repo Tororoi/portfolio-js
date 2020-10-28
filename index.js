@@ -1,18 +1,21 @@
 //---------Canvas as Background-----------//
 
-let bg = document.createElement('canvas'),        
+// let bg = document.createElement('canvas'), 
+let bg = document.querySelector(".bg"),       
     bgCtx = bg.getContext('2d'),
-    bgw = bg.width = window.innerWidth*2,
-    bgh = bg.height = window.innerHeight*2;
+    bgw = bg.width = window.innerWidth*4,
+    bgh = bg.height = window.innerHeight*4;
+    bg.style.width = window.innerWidth + "px";
+    bg.style.height = window.innerHeight + "px";
 
 // bgCtx.imageSmoothingEnabled = false;
 // bgCtx.drawImage(offScreenCVS,0,0, 1000, 1000)
 //draw bg
 bgCtx.fillStyle = "#282c34"
 bgCtx.fillRect(0,0,bgw,bgh)
-let xCoord = bgw*0.25;
-let yCoord = bgh*-0.25;
-let cellSize = 20;
+let xCoord = bgw*0.5;
+let yCoord = bgh*-0.7;
+let cellSize = 100;
 let perspective = 0.7;
 for (let y=0; y<grid.length; y++) {
     if (y>0) {
