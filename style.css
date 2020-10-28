@@ -13,6 +13,7 @@ body {
 /* NavBar */
 .navbar {
     display: flex;
+    color: #4f71b9;
 }
   
 .nav {

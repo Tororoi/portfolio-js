@@ -4,8 +4,8 @@ let offScreenCVS = document.createElement('canvas');
 let offScreenCTX = offScreenCVS.getContext("2d");
 
 //Set the dimensions of the drawing canvas
-offScreenCVS.width = 64;
-offScreenCVS.height = 64;
+offScreenCVS.width = 80;
+offScreenCVS.height = 80;
 
 let grid = [];
 
@@ -140,7 +140,7 @@ function get2DArray() {
         switch(color) {
           case "rgba(0, 0, 0, 255)":
             //black pixel
-            grid[y][x].color = "#ff8d4b";
+            grid[y][x].color = "#4f71b9";
             break;
           default: 
             //transparent pixel
