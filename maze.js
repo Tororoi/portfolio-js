@@ -127,10 +127,10 @@ function generateEllerMaze() {
 
 function get2DArray() {
       //Make the 2D array to hold all objects
-    for (let i=0; i<offScreenCVS.height; i++) {
+    for (let i=0; i<offScreenCVS.height+1; i++) {
         grid[i] = [];
-        for (let j=0; j<offScreenCVS.width; j++) {
-            grid[i][j] = {color: null, cost: 1, type: "free", x: j, y: i, gCost: 0, hCost: 0, fCost: 0}
+        for (let j=0; j<offScreenCVS.width+1; j++) {
+            grid[i][j] = {color: "#4f71b9", cost: 1, type: "free", x: j, y: i, gCost: 0, hCost: 0, fCost: 0}
         }
     }
     let imageData = offScreenCTX.getImageData(0,0,offScreenCVS.width,offScreenCVS.height);

@@ -13,28 +13,22 @@ let bg = document.querySelector(".bg"),
 //draw bg
 // bgCtx.fillStyle = "#282c34"
 // bgCtx.fillRect(0,0,bgw,bgh)
-// let xCoord = bgw*0.5;
-// let yCoord = bgh*-0.7;
+// let yO = bgh*-0.7;
+let xO = bgw*0.5;
+let yO = bgh*-0.7;
 let cellSize = 100;
-// let perspective = 0.7;
+let perspective = 0.7;
 drawMaze();
 function drawMaze() {
-    let xCoord = bgw*0.5;
-    let yCoord = bgh*-0.7;
-    let perspective = 0.7;
     for (let y=0; y<grid.length; y++) {
-        if (y>0) {
-            xCoord -= (grid.length * cellSize) + cellSize;
-            yCoord -= (grid.length * cellSize*perspective) - cellSize*perspective;
-        }
         for (let x=0; x<grid[y].length; x++) {
-            yCoord += cellSize*perspective;
-            xCoord += cellSize; 
+            let xPos = xO+(cellSize*(x-y));
+            let yPos = yO+(perspective*(cellSize*(x+y)));
             if (grid[y][x].color === "transparent") {continue;}
             // draw the cube
             drawCube(
-                xCoord,
-                yCoord,
+                xPos,
+                yPos,
                 cellSize,
                 cellSize,
                 cellSize,
@@ -98,13 +92,19 @@ function drawCube(x, y, wx, wy, h, color, per) {
 bg.addEventListener("click", handleCanvasClick);
 
 function handleCanvasClick(e) {
-    console.log(e.offsetX, e.offsetY)
-    let x = Math.round(e.offsetX/(cellSize/4))
-    let y = Math.round(e.offsetY/(cellSize/4))
-    console.log(x,y);
-    grid[y][x].color = "#b94f4f";
-    bgCtx.clearRect(0,0,bgw,bgh);
-    drawMaze();
+    //Get coordinates on canvas, offset by origin
+    let xCanvas = e.offsetX*4-xO;
+    let yCanvas = e.offsetY*4-yO;
+    //Get inverse of isometric transformation
+    let newX = 0.7+((yCanvas/perspective)+xCanvas)/(2*cellSize);
+    let newY = 0.7+((yCanvas/perspective)-xCanvas)/(2*cellSize);
+    let x = Math.ceil(newX);
+    let y = Math.ceil(newY);
+    if (grid[y][x].color === "transparent") {
+        grid[y][x].color = "#b94f4f";
+        bgCtx.clearRect(0,0,bgw,bgh);
+        drawMaze();
+    }
 }
 
 //Animation
@@ -112,9 +112,6 @@ function handleCanvasClick(e) {
 // bgImage.src = bg.toDataURL();
 // function drawLoop() {
 //     bgCtx.clearRect(0,0,bgw,bgh);
-    
-//     bgCtx.fillStyle = "#b94f4f";
-//     bgCtx.fillRect(50,50,1000,1000);
 
 //     drawMaze();
 //     // drawCube(
