@@ -8,6 +8,25 @@ let bg = document.querySelector(".bg"),
     bg.style.width = window.innerWidth + "px";
     bg.style.height = window.innerHeight + "px";
 
+//Adjust size on window resize
+function setSize() {
+    bgw = bg.width = window.innerWidth*4,
+    bgh = bg.height = window.innerHeight*4;
+    bg.style.width = window.innerWidth + "px";
+    bg.style.height = window.innerHeight + "px";
+
+    //center maze
+    xO = bgw*0.5;
+    yO = bgh*-0.7;
+}
+
+function flexCanvasSize() {
+    setSize();
+    bgCtx.clearRect(0,0,bgw,bgh);
+    drawMaze();
+}
+window.onresize = flexCanvasSize;
+
 // bgCtx.imageSmoothingEnabled = false;
 // bgCtx.drawImage(offScreenCVS,0,0, 1000, 1000)
 //draw bg
