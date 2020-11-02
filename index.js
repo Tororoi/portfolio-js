@@ -147,3 +147,32 @@ function handleCanvasClick(e) {
 // }
 
 // window.requestAnimationFrame(drawLoop);
+
+//Project card interaction
+// let projects = document.querySelectorAll(".project");
+
+// projects.forEach(p => {
+//     p.addEventListener("click", handleProjectClick);
+// })
+
+// function handleProjectClick(e) {
+//     //ignore children
+//     let project = e.path.reverse()[7];
+//     let popupWindow = e.path.reverse()[5];
+
+//     if (project.className === "project") {
+//         popupWindow.className = "popup-card";
+//         project.className = "project-card";
+//         // .project class turn display off
+//         document.querySelectorAll(".project").forEach(p => {
+//             p.style.display = "none";
+//         })
+//     } else if (project.className === "project-card") {
+//         popupWindow.className = "popup";
+//         project.className = "project";
+//         // .project class turn display off
+//         document.querySelectorAll(".project").forEach(p => {
+//             p.style.display = "flex";
+//         })
+//     }
+// }
