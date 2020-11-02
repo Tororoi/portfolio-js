@@ -148,31 +148,49 @@ function handleCanvasClick(e) {
 
 // window.requestAnimationFrame(drawLoop);
 
+//Nav interaction
+let navbar = document.querySelector(".nav");
+
+let projectPopUp = document.querySelector(".popup");
+projectPopUp.style.display = "none";
+
+navbar.addEventListener("click", handleNavClick);
+
+function handleNavClick(e) {
+    if (e.target.innerText === "PROJECTS") {
+        if (projectPopUp.style.display === "none") {
+            projectPopUp.style.display = "flex";
+        } else {
+            projectPopUp.style.display = "none";
+        }
+    }
+}
+
 //Project card interaction
-// let projects = document.querySelectorAll(".project");
+let projects = document.querySelectorAll(".project");
 
-// projects.forEach(p => {
-//     p.addEventListener("click", handleProjectClick);
-// })
+projects.forEach(p => {
+    p.addEventListener("click", handleProjectClick);
+})
 
-// function handleProjectClick(e) {
-//     //ignore children
-//     let project = e.path.reverse()[7];
-//     let popupWindow = e.path.reverse()[5];
+function handleProjectClick(e) {
+    //ignore children
+    let project = e.path.reverse()[7];
+    let popupWindow = e.path.reverse()[5];
 
-//     if (project.className === "project") {
-//         popupWindow.className = "popup-card";
-//         project.className = "project-card";
-//         // .project class turn display off
-//         document.querySelectorAll(".project").forEach(p => {
-//             p.style.display = "none";
-//         })
-//     } else if (project.className === "project-card") {
-//         popupWindow.className = "popup";
-//         project.className = "project";
-//         // .project class turn display off
-//         document.querySelectorAll(".project").forEach(p => {
-//             p.style.display = "flex";
-//         })
-//     }
-// }
+    if (project.className === "project") {
+        popupWindow.className = "popup-card";
+        project.className = "project-card";
+        // .project class turn display off
+        document.querySelectorAll(".project").forEach(p => {
+            p.style.display = "none";
+        })
+    } else if (project.className === "project-card") {
+        popupWindow.className = "popup";
+        project.className = "project";
+        // .project class turn display off
+        document.querySelectorAll(".project").forEach(p => {
+            p.style.display = "flex";
+        })
+    }
+}
