@@ -152,16 +152,21 @@ function handleCanvasClick(e) {
 let navbar = document.querySelector(".nav");
 
 let projectPopUp = document.querySelector(".popup");
-projectPopUp.style.display = "none";
+let elPer = document.querySelector(".perspective");
+elPer.style.webkitAnimationPlayState = "paused";
+
+//pause animation after completing iteration
+elPer.addEventListener("webkitAnimationIteration", () => {
+    elPer.style.webkitAnimationPlayState = "paused";
+})
 
 navbar.addEventListener("click", handleNavClick);
 
 function handleNavClick(e) {
     if (e.target.innerText === "PROJECTS") {
-        if (projectPopUp.style.display === "none") {
-            projectPopUp.style.display = "flex";
-        } else {
-            projectPopUp.style.display = "none";
+        //run animation
+        if (elPer.style.webkitAnimationPlayState === "paused") {
+            elPer.style.webkitAnimationPlayState = "running";
         }
     }
 }
