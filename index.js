@@ -156,6 +156,7 @@ let elPer = document.querySelector(".perspective");
 elPer.style.webkitAnimationPlayState = "paused";
 
 //pause animation after completing iteration
+
 elPer.addEventListener("webkitAnimationIteration", () => {
     elPer.style.webkitAnimationPlayState = "paused";
 })
@@ -176,6 +177,8 @@ let projects = document.querySelectorAll(".project");
 
 projects.forEach(p => {
     p.addEventListener("click", handleProjectClick);
+    //set initial style properties
+    p.style.width = "40%";
 })
 
 function handleProjectClick(e) {
@@ -185,8 +188,10 @@ function handleProjectClick(e) {
 
     if (project.style.width === "40%") {
         project.style.width = "80%";
+        project.style.height = "80%";
     } else {
         project.style.width = "40%";
+        project.style.height = "60%";
     }
 
     // if (project.className === "project") {
