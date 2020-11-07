@@ -66,24 +66,25 @@ body {
 /* Pop-up Window */
 
 .perspective {
-    /* background-color: red; */
+    background-color: rgba(26, 62, 138, 0.8);
     top: 10%;
     left: 15%;
     width: 70%;
     height: 80%;
     position: fixed;
     transform-style: preserve-3d;
-    animation: rotate 2s ease-out infinite paused forwards alternate-reverse;
+    animation: rotate 1s ease-out infinite paused forwards alternate-reverse;
 }
 
 @keyframes rotate {
-    100% {transform: rotateY(90deg);}
+    70% {transform: rotateY(90deg); height: 80%; background-color: rgba(26, 62, 138, 1);}
+    100% {transform: rotateY(90deg); height: 20px;}
 }
 
 .popup {
     display: flex;
     align-items: center;
-    background-color: rgba(26, 62, 138, 0.9);
+    /* background-color: rgba(26, 62, 138, 0.8); */
     /* border-radius: 10px; */
     border: 1px solid white;
     width: 100%;
@@ -100,7 +101,7 @@ body {
     position: fixed;
     top: 0%;
     left: 0%;
-    width: 18px;
+    width: 20px;
     height: 100%;
     background-color: white;
 }
@@ -156,7 +157,7 @@ body {
     margin-left: calc(5% + 8px);
     margin-right: calc(5% - 8px);
     align-self: center;
-    /* transition: height 1s; */
+    transition: all 1s;
 }
 
 .project:hover {
@@ -197,6 +198,8 @@ body {
     width: 100%;
 }
 
+
+/* Not using */
 .project-card {
     display: flex;
     flex-flow: column wrap;

@@ -180,22 +180,28 @@ projects.forEach(p => {
 
 function handleProjectClick(e) {
     //ignore children
-    let project = e.path.reverse()[7];
-    let popupWindow = e.path.reverse()[5];
+    let project = e.path.reverse()[8];
+    // let popupWindow = e.path.reverse()[6];
 
-    if (project.className === "project") {
-        popupWindow.className = "popup-card";
-        project.className = "project-card";
-        // .project class turn display off
-        document.querySelectorAll(".project").forEach(p => {
-            p.style.display = "none";
-        })
-    } else if (project.className === "project-card") {
-        popupWindow.className = "popup";
-        project.className = "project";
-        // .project class turn display off
-        document.querySelectorAll(".project").forEach(p => {
-            p.style.display = "flex";
-        })
+    if (project.style.width === "40%") {
+        project.style.width = "80%";
+    } else {
+        project.style.width = "40%";
     }
+
+    // if (project.className === "project") {
+    //     popupWindow.className = "popup-card";
+    //     project.className = "project-card";
+    //     // .project class turn display off
+    //     document.querySelectorAll(".project").forEach(p => {
+    //         p.style.display = "none";
+    //     })
+    // } else if (project.className === "project-card") {
+    //     popupWindow.className = "popup";
+    //     project.className = "project";
+    //     // .project class turn display off
+    //     document.querySelectorAll(".project").forEach(p => {
+    //         p.style.display = "flex";
+    //     })
+    // }
 }
