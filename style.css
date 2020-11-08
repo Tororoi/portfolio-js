@@ -11,10 +11,39 @@ body {
     overflow: hidden;
 }
 
+.landing {
+    position: fixed;
+    top: calc(50% - 72px);
+    left: calc(50% - 72px);
+    clip-path: circle(120px at center);
+    animation: dissolve 0.5s ease-in paused 1 forwards;
+}
+
+@keyframes dissolve {
+    100% {clip-path: circle(0px at center);}
+}
+
+.main {
+    opacity: 0;
+    animation: fade-in 0.5s ease-in paused 1 forwards;
+}
+
+@keyframes fade-in {
+    100% {opacity: 1;}
+}
+
 .bg {
     /* position: fixed; */
     /* left: 0; */
+    clip-path: circle(0px at center);
+    animation: expand-mask 1s ease-in paused 1 forwards;
 }
+
+@keyframes expand-mask {
+    99% {clip-path: circle(1500px at center);}
+    100% {clip-path: none;}
+}
+
 /* NavBar */
 .navbar {
     display: flex;
@@ -74,11 +103,12 @@ body {
     position: fixed;
     transform-style: preserve-3d;
     /* transform: rotateX(-45deg) rotateY(45deg); */
-    animation: rotate 1s ease-out infinite paused forwards alternate-reverse;
+    animation: rotate 0.5s ease-out infinite paused forwards alternate-reverse;
 }
 
 @keyframes rotate {
-    /* 5% {transform: rotateY(0deg); height: 80%; background-color: rgba(26, 62, 138, 0.8);} */
+    5% {transform: rotateY(0deg); height: 80%; background-color: rgba(26, 62, 138, 0.8);}
+    95% {transform: rotateY(90deg); height: 80%; background-color: rgb(10, 38, 99, 0.9);}
     100% {transform: rotateY(90deg); height: 80%; background-color: rgb(10, 38, 99, 0.9);}
     /* 100% {transform: rotateY(90deg) scale(0.1,0.1); height: 20px;} */
 }
@@ -175,7 +205,7 @@ body {
     display: flex;
     flex-flow: column wrap;
     align-items: center;
-    background-color: #537edb;
+    background-color: rgb(83, 126, 219);
     opacity: 1;
     border-radius: 10px;
     width: 40%;

@@ -1,5 +1,8 @@
-//---------Canvas as Background-----------//
+//-------------Variables---------------//
+//Landing
+let landing = document.querySelector(".landing");
 
+//Background Canvas
 let bg = document.querySelector(".bg"),       
     bgCtx = bg.getContext('2d'),
     //sharpen * 4
@@ -7,6 +10,45 @@ let bg = document.querySelector(".bg"),
     bgh = bg.height = window.innerHeight*4;
     bg.style.width = window.innerWidth + "px";
     bg.style.height = window.innerHeight + "px";
+
+//Main
+let mainBody = document.querySelector(".main");
+mainBody.style.display = "none";
+
+//Nav
+let navbar = document.querySelector(".nav");
+
+let projectPopUp = document.querySelector(".popup");
+let elPer = document.querySelector(".perspective");
+elPer.style.webkitAnimationPlayState = "paused";
+
+//Project card interaction
+let projects = document.querySelectorAll(".project");
+
+//Event Listeners
+landing.addEventListener("click", () => {
+    landing.style.webkitAnimationPlayState = "running";
+});
+
+landing.addEventListener("webkitAnimationEnd", () => {
+    bg.style.webkitAnimationPlayState = "running";
+});
+
+bg.addEventListener("webkitAnimationEnd", () => {
+    mainBody.style.display = "block";
+    mainBody.style.webkitAnimationPlayState = "running";
+});
+
+//pause animation after completing iteration
+
+elPer.addEventListener("webkitAnimationIteration", () => {
+    elPer.style.webkitAnimationPlayState = "paused";
+})
+
+navbar.addEventListener("click", handleNavClick);
+
+
+//---------Canvas as Background-----------//
 
 //Adjust size on window resize
 function setSize() {
@@ -148,21 +190,6 @@ function handleCanvasClick(e) {
 
 // window.requestAnimationFrame(drawLoop);
 
-//Nav interaction
-let navbar = document.querySelector(".nav");
-
-let projectPopUp = document.querySelector(".popup");
-let elPer = document.querySelector(".perspective");
-elPer.style.webkitAnimationPlayState = "paused";
-
-//pause animation after completing iteration
-
-elPer.addEventListener("webkitAnimationIteration", () => {
-    elPer.style.webkitAnimationPlayState = "paused";
-})
-
-navbar.addEventListener("click", handleNavClick);
-
 function handleNavClick(e) {
     if (e.target.innerText === "PROJECTS") {
         //run animation
@@ -172,14 +199,11 @@ function handleNavClick(e) {
     }
 }
 
-//Project card interaction
-let projects = document.querySelectorAll(".project");
-
-projects.forEach(p => {
-    p.addEventListener("click", handleProjectClick);
-    //set initial style properties
-    p.style.width = "40%";
-})
+// projects.forEach(p => {
+//     p.addEventListener("click", handleProjectClick);
+//     //set initial style properties
+//     p.style.width = "40%";
+// })
 
 function handleProjectClick(e) {
     //ignore children
